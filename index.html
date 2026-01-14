@@ -1,0 +1,50 @@
+  <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ノベルゲーム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="title">
+  <h1>My Novel Game</h1>
+  <button id="newGame">ニューゲーム</button>
+  <button id="openLoad">ロード</button>
+
+  <div id="loadMenu" style="display:none;">
+    <button data-slot="1" class="load">Load 1</button>
+    <button data-slot="2" class="load">Load 2</button>
+    <button data-slot="3" class="load">Load 3</button>
+  </div>
+</div>
+
+<div id="game" style="display:none;">
+  <!-- バックログ -->
+  <div id="log" style="display:none;">
+    <div id="logContent"></div>
+    <div id="logHint">クリック or Enterで閉じる</div>
+  </div>
+  <div id="screen">
+    <img id="bg">
+    <div id="charaLayer">
+      <img id="captain" class="chara">
+    </div>
+    <div id="nameBox"></div>
+    <div id="text"></div>
+  </div>
+
+  <div id="choices"></div>
+
+  <div id="menu">
+    <button id="autoBtn">AUTO</button>
+    <button data-slot="1" class="save">Save 1</button>
+    <button data-slot="2" class="save">Save 2</button>
+    <button data-slot="3" class="save">Save 3</button>
+    <button id="toTitle">タイトルへ</button>
+  </div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
