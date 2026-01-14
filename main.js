@@ -3,7 +3,8 @@ import { scenario } from "./scenario.js";
 const ASSETS = {
   backgrounds: [
     "bright_gym.jpg",
-    "bright_street.jpg"
+    "bright_street.jpg",
+    "blackbg.jpg"
   ],
   characters: {
     captain: ["serious", "serious2"]
