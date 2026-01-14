@@ -1,17 +1,19 @@
 export const scenario = {
   start: {
-    bg: "bg/bright_street.jpg",
+    bg: "bg/blackbg.jpg",
 
     texts: [
-      { name: null, text: "今日は入学式。" },
-      { name: null, text: "新しい服に新しいカバン、まさしく心機一転といった感じだ。" },
-      { name: null, text: "楽しみだと思う反面、不安も同時に押し寄せてくる。" },
-      { name: null, text: "俺は新しい学校でうまくやっていけるだろうか？" },
-      { name: null, text: "もし友達ができなかったら？" },
-      { name: null, text: "いや、そんなことは考えるべきじゃないな。" },
-      { name: null, text: "何はともあれ、俺の新しい青春が幕を開けるんだ！" },
-      { name: null, text: "お、もうすぐ入学式が始まる時間だ。" },
-      { name: null, text: "早く体育館に向わなくちゃな。" },
+      { name: null, text: "………暗い。" },
+      { name: null, text: "いや、暗いんじゃない。" },
+      { name: null, text: "ここには何も存在しないんだ。" },
+      { name: null, text: "床も、背景も、天井も境が判別できない。" },
+      { name: null, text: "ユイだけが、何もない空間の中で確かに存在している。" },
+      { name: "ユイ", text: "「ついにここまで来たんだね。」" },
+      { name: null, text: "彼女は笑わない。" },
+      { name: "ユイ", text: "「もうこれ以上台本は無いよ。」" },
+      { name: null, text: "一歩こちらに歩み寄る。" },
+      { name: "ユイ", text: "「もうこれ以上台本は無いよ。」" },
+      { name: "ユイ", text: "「分岐も、エンディングも、全部・・・・・・使い切った。」" },
       { name: null, text: "変にプログラム変えるよりこうする方が楽なんですよね。by製作者" }
     ],
 
