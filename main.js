@@ -390,8 +390,17 @@ function resetGame() {
   });
 }
 
+function  initialize() {
+  for (const chara in ASSETS.characters) {
+    charaState[chara] = {
+      visible: false
+    };
+  }
+}
+
 // ニューゲーム
 newGameBtn.onclick = () => {
+  initialize();
   resetGame();
   startGame();
 };
@@ -441,6 +450,9 @@ function load(slot) {
 
   current = data.scene;
   textIndex = data.textIndex;
+  for (const chara in data.charaState) {
+    charaState[chara] = data.charaState[chara];
+  }
   for (const k in data.flags) {
     flags[k] = data.flags[k];
   }
@@ -457,7 +469,6 @@ function restoreCharaState(state) {
   for (const id in state) {
     const s = state[id];
     if (!s.visible) continue;
-
     showChara(id, s.face, s.pos);
   }
 }
