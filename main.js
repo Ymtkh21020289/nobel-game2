@@ -8,7 +8,9 @@ const ASSETS = {
   ],
   characters: {
     captain: ["serious", "serious2"]
-  }
+  },
+  bgm: ["lan_theme"],
+  se: ["bump"]
 };
 
 const backlog = [];
@@ -19,12 +21,12 @@ let currentEntry = null;
 let textIndex = 0;
 let current = "start";
 const flags = {};
-let isTyping = false;     // 今文字表示中か？
-let typingTimer = null; // setInterval管理用
+let isTyping = false;
+let typingTimer = null;
 
 let isAuto = false;
 let autoTimer = null;
-const AUTO_WAIT = 1200; // 全文表示後の待ち時間(ms)
+const AUTO_WAIT = 1200;
 
 const bgImg = document.getElementById("bg");
 const charaImg = document.getElementById("chara");
@@ -48,6 +50,59 @@ const autoBtn = document.getElementById("autoBtn");
 // --------------------
 // 基本ロジック
 // --------------------
+
+const audioManager = {
+  bgm: null,
+  bgmName: null,
+
+  playBGM(name, loop = true, fade = 0) {
+    const src = `audio/bgm/${name}.mp3`;
+
+    // 同じ曲なら何もしない
+    if (this.bgmName === name) return;
+
+    if (this.bgm) {
+      this.stopBGM(fade);
+    }
+
+    const audio = new Audio(src);
+    audio.loop = loop;
+    audio.volume = 1;
+
+    audio.play();
+
+    this.bgm = audio;
+    this.bgmName = name;
+  },
+
+  stopBGM(fade = 0) {
+    if (!this.bgm) return;
+
+    if (fade > 0) {
+      const step = this.bgm.volume / (fade / 50);
+      const interval = setInterval(() => {
+        this.bgm.volume -= step;
+        if (this.bgm.volume <= 0) {
+          clearInterval(interval);
+          this.bgm.pause();
+          this.bgm = null;
+          this.bgmName = null;
+        }
+      }, 50);
+    } else {
+      this.bgm.pause();
+      this.bgm = null;
+      this.bgmName = null;
+    }
+  },
+
+  playSE(name) {
+    const src = `audio/se/${name}.mp3`;
+    const se = new Audio(src);
+    se.play();
+  }
+};
+
 function checkCondition(choice) {
   if (choice.if && !flags[choice.if]) return false;
   if (choice.ifNot && flags[choice.ifNot]) return false;
@@ -141,6 +196,13 @@ function advanceText() {
   // 🔽 command は即実行して次へ
   if (entry.command) {
     executeCommand(entry);
+    textIndex++;
+    advanceText();
+    return;
+  }
+
+  if (entry.type) {
+    applyCommand(entry);
     textIndex++;
     advanceText();
     return;
@@ -352,6 +414,26 @@ function preloadImage(src) {
   });
 }
 
+function applyCommand(cmd) {
+
+  if (cmd.type === "bgm") {
+    audioManager.playBGM(cmd.name, cmd.loop ?? true, cmd.fade ?? 0);
+    return true;
+  }
+
+  if (cmd.type === "bgmStop") {
+    audioManager.stopBGM(cmd.fade ?? 0);
+    return true;
+  }
+
+  if (cmd.type === "se") {
+    audioManager.playSE(cmd.name);
+    return true;
+  }
+
+  return false;
+}
+
 async function preloadAllAssets() {
   const tasks = [];
 
@@ -431,7 +513,8 @@ function save(slot) {
     scene: current,
     textIndex,
     charaState: JSON.parse(JSON.stringify(charaState)), // 深コピー
-    flags
+    flags,
+    bgm: audioManager.bgmName
   };
   localStorage.setItem("novelSave" + slot, JSON.stringify(data));
   console.log("SAVE DATA:", data);
@@ -455,6 +538,9 @@ function load(slot) {
   }
   for (const k in data.flags) {
     flags[k] = data.flags[k];
+  }
+  if (saveData.bgm) {
+    audioManager.playBGM(saveData.bgm);
   }
   restoreCharaState(data.charaState);
   startGame();
