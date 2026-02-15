@@ -20,6 +20,9 @@ export const scenario = {
     texts: [
       { name: "誠", text: "「いっけねぇ、遅刻遅刻ー！」" },
       { name: "？？？", text: "「あーっ！ どいてどいてー！ 止まれないよぉーっ！」" },
+      { name: null, text: "ドゴォォォォォォォォォォォン！！" },
+      { name: "誠", text: "「ぐはっ！？」" },
+      { name: "誠", text: "ドゴォォォォォォォォォォォン！！" }
     ]
   }
 };
