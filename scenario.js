@@ -25,6 +25,7 @@ export const scenario = {
       { name: null, text: "突如、何かがものすごい勢いで突っ込んできた。" },
       { name: "誠", text: "「い、いってぇ……。」" },
       { name: "誠", text: "「おい、大丈夫かよ」" },
+      { command: "show", chara: "lan", face: "shadow", pos:"center" },
       { name: "？？？", text: "「ううう……。あうっ、私の遅刻防止用フランスパンが、砂まみれに……」" }
     ]
   }
