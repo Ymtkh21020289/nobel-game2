@@ -19,14 +19,17 @@ export const scenario = {
 
     texts: [
       { name: "誠", text: "「いっけねぇ、遅刻遅刻ー！」" },
+      { command: "show", chara: "lan", face: "shadow", pos:"center" },
       { name: "？？？", text: "「あーっ！ どいてどいてー！ 止まれないよぉーっ！」" },
       { name: null, text: "ドゴォォォォォォォォォォォン！！" },
       { name: "誠", text: "「ぐはっ！？」" },
       { name: null, text: "突如、何かがものすごい勢いで突っ込んできた。" },
       { name: "誠", text: "「い、いってぇ……。」" },
       { name: "誠", text: "「おい、大丈夫かよ」" },
-      { command: "show", chara: "lan", face: "shadow", pos:"center" },
-      { name: "？？？", text: "「ううう……。あうっ、私の遅刻防止用フランスパンが、砂まみれに……」" }
+      { command: "face", chara: "lan", face: "confused" },
+      { name: "？？？", text: "「ううう……。あうっ、私の遅刻防止用フランスパンが、砂まみれに……」" },
+      { name: null, text: "目の前で涙目でパンを見つめているのは、幼馴染の天真（てんま）らんだ。" },
+      { name: null, text: "こいつは昔からこうだ。曲がり角があれば必ず誰かとぶつかる、歩く衝突事故人間である。" },
     ]
   }
 };
