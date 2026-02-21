@@ -7,7 +7,8 @@ const ASSETS = {
     "blackbg.jpg"
   ],
   characters: {
-    captain: ["serious", "serious2"]
+    captain: ["serious", "serious2"],
+    lan: ["nomal", "nomal2", "doubt", "angry", "trouble", "confused", "smile", "smile2", "shadow"]
   },
   bgm: ["lan_theme"],
   se: ["bump"]
